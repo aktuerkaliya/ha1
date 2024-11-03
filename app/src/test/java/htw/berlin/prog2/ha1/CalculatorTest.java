@@ -90,5 +90,18 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("should repeat last operation if equals key is pressed again")
+    void testClearkey() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(1);
+        calc.pressEqualsKey();
+        assertEquals("2", calc.readScreen());
+        calc.pressEqualsKey();
+        assertEquals("3", calc.readScreen());
+    }
 }
 
