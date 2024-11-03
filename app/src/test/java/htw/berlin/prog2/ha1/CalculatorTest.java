@@ -103,5 +103,36 @@ class CalculatorTest {
         calc.pressEqualsKey();
         assertEquals("3", calc.readScreen());
     }
+    
+    @Test
+    @DisplayName("should clear the screen after pressing the clear key")
+    void testClearKey() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(6);
+        calc.pressClearKey();
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(7);
+        calc.pressEqualsKey();
+        String expected = "12";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Should display the intermediate result when an operation is performed multiple times.")
+    void testIntermediateResult() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        String expected = "10";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
